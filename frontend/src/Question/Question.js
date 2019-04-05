@@ -33,7 +33,7 @@ class Question extends Component {
                         <hr className="my-4" />
                         <p>Answers: </p>
                         {
-                            question.answers.map((anser, idx) => (
+                            question.answers.map((answer, idx) => (
                                 <p className="lead" key={idx}>{answer.answer}</p>
                             ))
                         }

@@ -45,17 +45,17 @@ app.get('/:id', (req, res) => {
 });
 
 const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://sokos6.auth0.com/.well-known/jwks.json`
-    }),
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://sokos6.auth0.com/.well-known/jwks.json`
+  }),
 
-    // Validate the audience and the issuer.
-    audience: 'F8UkdhhgxDY70tkJeGt8Yz2aeWnQBDAu',
-    issuer: `https://sokos6.auth0.com/`,
-    algorithms: ['RS256']
+  // Validate the audience and the issuer.
+  audience: 'F8UkdhhgxDY70tkJeGt8Yz2aeWnQBDAu',
+  issuer: `https://sokos6.auth0.com/`,
+  algorithms: ['RS256']
 });
 
 // insert a new question
@@ -82,6 +82,7 @@ app.post('/answer/:id', checkJwt, (req, res) => {
 
   question[0].answers.push({
     answer,
+    author: req.user.name,
   });
 
   res.status(200).send();
